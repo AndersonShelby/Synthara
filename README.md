@@ -1,11 +1,10 @@
-# Build-Bot
+# Genie
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e27136a224c34551ac1a9e3a34bce5b3?branch=bbot-python)](https://www.codacy.com/gh/Sohil876/Build-Bot/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Sohil876/Build-Bot&amp;utm_campaign=Badge_Grade)
 
 **Requirements**
 *   Python3
 *   Dependencies:
     *   Python packages in `requirements.txt` file
-    *   unbuffer from expect package (for ubuntu  `sudo apt install expect`)
 
 **Instructions:**
 *   Give `-h` argument to script for help and see available commands.
