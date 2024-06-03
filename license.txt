@@ -1,6 +1,6 @@
 Licença de Uso para o Script da IA
 
-Este script da IA foi criado por [Seu Nome] e está protegido por direitos autorais.
+Este script da IA foi criado por TechPhantom e está protegido por direitos autorais.
 
 Você tem permissão para:
 - Usar o script para fins pessoais ou comerciais.
