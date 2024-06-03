@@ -1,6 +1,6 @@
 # Genie
 
-**Requirements**
+**Requisitos**
 *   Python3
 *   NLTK
 *   scikit-learn
