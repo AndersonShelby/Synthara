@@ -223,7 +223,6 @@ while True:
 4. **Resposta:** Se a similaridade for suficiente, a resposta correspondente é retornada. Caso contrário, o usuário é solicitado a fornecer uma resposta correta, que é então armazenada no banco de dados e no arquivo JSON para uso futuro.
 5. **Interação:** O loop contínuo permite a interação constante até que o usuário decida sair.
 
-Essa abordagem permite que o assistente aprenda novas perguntas e respostas ao longo do tempo, melhorando sua precisão e utilidade.
 
 ## Licença
 
