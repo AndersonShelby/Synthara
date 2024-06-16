@@ -216,9 +216,3 @@ while True:
 3. **Vetorização:** A pergunta do usuário é vetorizada e comparada com perguntas pré-processadas usando similaridade de cosseno.
 4. **Resposta:** Se a similaridade for suficiente, a resposta correspondente é retornada. Caso contrário, o usuário é solicitado a fornecer uma resposta correta, que é então armazenada no banco de dados e no arquivo JSON para uso futuro.
 5. **Interação:** O loop contínuo permite a interação constante até que o usuário decida sair.
-
-
-## Licença
-
-Este projeto está licenciado sob os termos da licença MIT.
-```
