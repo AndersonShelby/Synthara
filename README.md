@@ -1,18 +1,12 @@
 # Genie
 
-**Requisitos**
-*   Python3
-*   NLTK
-*   scikit-learn
-*   sqlite3
-
 **Instalação:**
 *   Use `sudo apt install git` para instalar o git.
 *   Use `git clone https://github.com/GhostKing47/Genie.git` para clonar o repositório.
 *   Use `chmod +x setup.sh` para dar autorização para executar o script, e, em seguida use `bash setup.sh` para instalar as bibliotecas necessárias e executar o script principal.
 
 
-```markdown
+markdown
 # Assistente de Texto com NLP
 
 Este projeto é um assistente de texto simples que utiliza Processamento de Linguagem Natural (NLP) para responder às perguntas dos usuários. O assistente pode aprender novas perguntas e respostas ao longo do tempo, armazenando-as em um banco de dados SQLite e em um arquivo JSON.
@@ -26,7 +20,7 @@ Este projeto é um assistente de texto simples que utiliza Processamento de Ling
 
 ## Dependências
 
-O projeto depende das seguintes bibliotecas:
+### O projeto depende das seguintes bibliotecas:
 
 - `os`
 - `nltk`
@@ -35,7 +29,7 @@ O projeto depende das seguintes bibliotecas:
 - `json`
 - `sklearn`
 
-Você pode instalar as dependências do `nltk` executando:
+### Você pode instalar as dependências do `nltk` executando:
 
 ```python
 nltk.download('punkt')
