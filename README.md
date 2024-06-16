@@ -1,4 +1,4 @@
-# Genie v3 experimental
+# Genie v3 PROTÓTIPO
 
 **Instalação:**
 *   Use `sudo apt install git` para instalar o git.
