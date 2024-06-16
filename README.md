@@ -6,7 +6,6 @@
 *   Use `chmod +x setup.sh` para dar autorização para executar o script, e, em seguida use `bash setup.sh` para instalar as bibliotecas necessárias e executar o script principal.
 
 
-markdown
 # Assistente de Texto com NLP
 
 Este projeto é um assistente de texto simples que utiliza Processamento de Linguagem Natural (NLP) para responder às perguntas dos usuários. O assistente pode aprender novas perguntas e respostas ao longo do tempo, armazenando-as em um banco de dados SQLite e em um arquivo JSON.
