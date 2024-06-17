@@ -41,6 +41,7 @@ nltk.download('wordnet')
 ### Importação de Bibliotecas e Configuração Inicial
 
 ```python
+print("Carregando bibliotecas...")
 import os
 import time
 import sqlite3
@@ -56,7 +57,6 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 os.system('clear')
-print("Carregando bibliotecas...")
 ```
 
 ### Baixar Recursos NLTK
