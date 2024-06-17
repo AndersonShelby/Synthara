@@ -1,10 +1,12 @@
+Claro, aqui está a atualização do arquivo README.md para refletir o novo script:
+
+```markdown
 # Genie v1 PROTÓTIPO
 
 **Instalação:**
-*   Use `sudo apt install git` para instalar o git.
-*   Use `git clone https://github.com/GhostKing47/Genie.git` para clonar o repositório.
-*   Use `chmod +x setup.sh` para dar autorização para executar o script, e, em seguida use `bash setup.sh` para instalar as bibliotecas necessárias e executar o script principal.
-
+* Use `sudo apt install git` para instalar o git.
+* Use `git clone https://github.com/GhostKing47/Genie.git` para clonar o repositório.
+* Use `chmod +x setup.sh` para dar autorização para executar o script, e, em seguida, use `bash setup.sh` para instalar as bibliotecas necessárias e executar o script principal.
 
 # Assistente de Texto com NLP
 
@@ -42,7 +44,6 @@ nltk.download('wordnet')
 
 ```python
 import os
-import nltk
 import time
 import sqlite3
 import json
@@ -51,6 +52,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+import nltk
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 os.system('clear')
 print("Carregando bibliotecas...")
@@ -81,48 +86,57 @@ def processar_texto(texto):
 
 ### Carregamento e Salvamento de Perguntas e Respostas
 
+#### Carregar Perguntas e Respostas do SQLite
+
 ```python
 def carregar_perguntas_respostas_sqlite(nome_banco):
-    conn = sqlite3.connect(nome_banco)
+    db_path = os.path.join(DATA_DIR, nome_banco)
+    conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     cursor.execute("SELECT pergunta, resposta FROM perguntas_respostas")
     perguntas_respostas = cursor.fetchall()
     conn.close()
     return {pergunta: resposta for pergunta, resposta in perguntas_respostas}
+```
 
+#### Carregar Perguntas e Respostas do JSON
+
+```python
 def carregar_perguntas_respostas_json(nome_arquivo):
-    with open(nome_arquivo, 'r', encoding='utf-8') as f:
+    json_path = os.path.join(DATA_DIR, nome_arquivo)
+    with open(json_path, 'r', encoding='utf-8') as f:
         perguntas_respostas = json.load(f)
     return perguntas_respostas
+```
 
+#### Salvar Perguntas e Respostas no SQLite
+
+```python
 def salvar_pergunta_resposta_sqlite(pergunta, resposta, nome_banco):
-    conn = sqlite3.connect(nome_banco)
+    db_path = os.path.join(DATA_DIR, nome_banco)
+    conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     cursor.execute("INSERT INTO perguntas_respostas (pergunta, resposta) VALUES (?, ?)", (pergunta, resposta))
     conn.commit()
     conn.close()
+```
 
+#### Salvar Perguntas e Respostas no JSON
+
+```python
 def salvar_pergunta_resposta_json(pergunta, resposta, nome_arquivo):
-    with open(nome_arquivo, 'r+', encoding='utf-8') as f:
+    json_path = os.path.join(DATA_DIR, nome_arquivo)
+    with open(json_path, 'r+', encoding='utf-8') as f:
         perguntas_respostas = json.load(f)
         perguntas_respostas[pergunta] = resposta
         f.seek(0)
         json.dump(perguntas_respostas, f, ensure_ascii=False, indent=4)
 ```
 
-### Respostas Predefinidas e Atualização com Banco de Dados
+### Inicialização e Carregamento de Dados
 
 ```python
-respostas_pre_definidas = {
-    "Qual é o seu nome?": "Meu nome é Genie.",
-    "Como você está?": "Eu não tenho sentimentos, mas estou aqui para ajudar!",
-    "O que você faz?": "Eu sou um modelo de linguagem treinado para responder às suas perguntas.",
-    "Quem te criou?": "Fui criado por um desenvolvedor apaixonado por inteligência artificial.",
-    "Qual a sua cor favorita?": "Não tenho percepção de cor, mas posso ser qualquer cor que você preferir!",
-    "Qual é a capital do Brasil?": "A capital do Brasil é Brasília.",
-    "Qual é a maior montanha do mundo?": "A maior montanha do mundo é o Monte Everest.",
-    "Quantos estados tem o Brasil?": "O Brasil tem 26 estados e 1 Distrito Federal."
-}
+respostas_pre_definidas = {}
 
 try:
     respostas_sqlite = carregar_perguntas_respostas_sqlite('perguntas_respostas.db')
@@ -137,7 +151,7 @@ except Exception as e:
     print(f"Erro ao carregar arquivo JSON: {e}")
 ```
 
-### Vetorização e Cálculo de Similaridade
+### Pré-processamento de Perguntas e Vetorização
 
 ```python
 perguntas_bd = list(respostas_pre_definidas.keys())
@@ -152,15 +166,13 @@ perguntas_bd_vec = vectorizer.transform(perguntas_bd_processadas)
 ```python
 def obter_resposta(pergunta):
     pergunta_processada = processar_texto(pergunta)
-    
     print("Carregando...")
     time.sleep(1)
-
     pergunta_vec = vectorizer.transform([pergunta_processada])
     similaridades = cosine_similarity(pergunta_vec, perguntas_bd_vec).flatten()
     max_similaridade = similaridades.max()
 
-    if max_similaridade >= limiar_similaridade:
+    if max_similaridade >= 0.2:
         idx_pergunta_similar = similaridades.argmax()
         pergunta_similar = perguntas_bd[idx_pergunta_similar]
         resposta = respostas_pre_definidas[pergunta_similar]
@@ -187,25 +199,30 @@ def adicionar_nova_resposta(pergunta, resposta):
 ```python
 os.system('clear')
 while True:
-    pergunta_do_usuario = input("Você: ")
+    comando = input("Você: ").strip().lower()
 
-    if pergunta_do_usuario.lower() == 'sair':
+    if comando == 'sair':
         print("Assistente: Até logo!")
         break
-
-    pergunta_similar, resposta = obter_resposta(pergunta_do_usuario)
-    print(f"Assistente: {resposta}")
-    
-    if pergunta_similar:
-        feedback = input("Essa resposta foi útil? (sim/não): ").strip().lower()
-        if feedback == 'não':
+    elif comando == 'limpar':
+        print("Comando 'limpar' não implementado.")
+    elif comando == 'recriar':
+        print("Comando 'recriar' não implementado.")
+    else:
+        pergunta_do_usuario = comando
+        pergunta_similar, resposta = obter_resposta(pergunta_do_usuario)
+        print(f"Assistente: {resposta}")
+        
+        if pergunta_similar:
+            feedback = input("Essa resposta foi útil? (sim/não): ").strip().lower()
+            if feedback foi 'não':
+                resposta_correta = input("Por favor, forneça a resposta correta: ").strip()
+                adicionar_nova_resposta(pergunta_do_usuario, resposta_correta)
+                print("Obrigado! Eu aprendi algo novo.")
+        else:
             resposta_correta = input("Por favor, forneça a resposta correta: ").strip()
             adicionar_nova_resposta(pergunta_do_usuario, resposta_correta)
             print("Obrigado! Eu aprendi algo novo.")
-    else:
-        resposta_correta = input("Por favor, forneça a resposta correta: ").strip()
-        adicionar_nova_resposta(pergunta_do_usuario, resposta_correta)
-        print("Obrigado! Eu aprendi algo novo.")
 ```
 
 ## Resumo do Funcionamento
