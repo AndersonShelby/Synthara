@@ -1,3 +1,4 @@
+print("Carregando bibliotecas...")
 import os
 import time
 import sqlite3
@@ -16,7 +17,7 @@ DATA_DIR = os.path.join(BASE_DIR, 'data')  # Diretório 'data' dentro do diretó
 # Limpar console
 os.system('clear')
 
-print("Carregando bibliotecas...")
+print("Carregando recursos NLTK...")
 # Baixar recursos NLTK
 def baixar_recursos_nltk():
     nltk.download('punkt')
@@ -25,7 +26,6 @@ def baixar_recursos_nltk():
 
 baixar_recursos_nltk()
 
-print("Carregando recursos NLTK...")
 
 # Função para processar texto
 def processar_texto(texto):
