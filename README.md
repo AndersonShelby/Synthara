@@ -1,12 +1,10 @@
-Claro, aqui está a atualização do arquivo README.md para refletir o novo script:
-
-```markdown
 # Genie v1 PROTÓTIPO
 
 **Instalação:**
-* Use `sudo apt install git` para instalar o git.
-* Use `git clone https://github.com/GhostKing47/Genie.git` para clonar o repositório.
-* Use `chmod +x setup.sh` para dar autorização para executar o script, e, em seguida, use `bash setup.sh` para instalar as bibliotecas necessárias e executar o script principal.
+*   Use `sudo apt install git` para instalar o git.
+*   Use `git clone https://github.com/GhostKing47/Genie.git` para clonar o repositório.
+*   Use `chmod +x setup.sh` para dar autorização para executar o script, e, em seguida use `bash setup.sh` para instalar as bibliotecas necessárias e executar o script principal.
+
 
 # Assistente de Texto com NLP
 
@@ -215,7 +213,7 @@ while True:
         
         if pergunta_similar:
             feedback = input("Essa resposta foi útil? (sim/não): ").strip().lower()
-            if feedback foi 'não':
+            if feedback == 'não':
                 resposta_correta = input("Por favor, forneça a resposta correta: ").strip()
                 adicionar_nova_resposta(pergunta_do_usuario, resposta_correta)
                 print("Obrigado! Eu aprendi algo novo.")
