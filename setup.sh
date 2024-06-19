@@ -11,6 +11,7 @@ function green_echo() {
 
 # Limpar a tela
 clear
+
 # Atualizando lista de pacotes
 green_echo "Atualizando lista de pacotes..."
 sudo apt update && sudo apt upgrade
