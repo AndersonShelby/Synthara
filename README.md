@@ -1,4 +1,4 @@
-# Genie v1 PROTÓTIPO
+# Synthara v1 PROTÓTIPO
 
 **Instalação:**
 *   Use `sudo apt install git` para instalar o git.
