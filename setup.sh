@@ -32,4 +32,4 @@ python3 -m nltk.downloader wordnet
 
 # Executar o script principal
 green_echo "Executando o script principal..."
-python3 Genie.py
+python3 Syn.py
