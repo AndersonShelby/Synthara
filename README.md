@@ -60,7 +60,7 @@ DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 ```python
 def baixar_recursos_nltk():
-    nltk.download('punkt')
+    nltk.download('punkt_tab')
     nltk.download('stopwords')
     nltk.download('wordnet')
 
