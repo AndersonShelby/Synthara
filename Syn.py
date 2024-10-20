@@ -20,7 +20,7 @@ os.system('clear')
 print("Carregando recursos NLTK...")
 # Baixar recursos NLTK
 def baixar_recursos_nltk():
-    nltk.download('punkt')
+    nltk.download('punkt_tab')
     nltk.download('stopwords')
     nltk.download('wordnet')
 
